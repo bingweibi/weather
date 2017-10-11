@@ -50,7 +50,7 @@ public class HomeFragment extends Fragment {
     private TextView text_visibility;
     private TextView text_wind;
     private TextView text_todayDescriable;
-    private String weatherId;
+//    private String weatherId;
     private TextView text_hour;
     private TextView text_hourWeather;
     private TextView text_Date;
@@ -87,7 +87,7 @@ public class HomeFragment extends Fragment {
         text_visibility = view.findViewById(R.id.text_visibility);
         text_wind = view.findViewById(R.id.text_wind);
         text_todayDescriable = view.findViewById(R.id.text_todayDescriable);
-        weatherId = "";
+        //weatherId = "";
         dailyForceastLayout = view.findViewById(R.id.layout_forecastWeather);
         hourlyForecastLayout = view.findViewById(R.id.layout_hourlyForecastWeather);
         swipeRefreshLayout = view.findViewById(R.id.swipe_refresh);
@@ -108,12 +108,12 @@ public class HomeFragment extends Fragment {
             }
         }else {
             mWeatherId = weatherId2;
-            requestWeatherInfo(weatherId);
+            requestWeatherInfo(mWeatherId);
         }
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                requestWeatherInfo(weatherId);
+                requestWeatherInfo(mWeatherId);
             }
         });
         return view;
