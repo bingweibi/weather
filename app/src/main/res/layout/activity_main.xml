@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.bbw.weather.MainActivity">
+
+    <FrameLayout
+        android:id="@+id/main_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:alpha="0.6"
+        android:background="#808080"/>
+
+    <RadioGroup
+        android:id="@+id/radio_group_button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="#fff">
+        <RadioButton
+            android:id="@+id/radio_button_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="首页"
+            android:drawableTop="@drawable/tab_home_selector"
+            style="@style/RadioGroupButtonStyle"/>
+        <RadioButton
+            android:id="@+id/radio_button_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="收藏"
+            android:drawableTop="@drawable/tab_like_selector"
+            style="@style/RadioGroupButtonStyle"/>
+        <RadioButton
+            android:id="@+id/radio_button_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="添加"
+            android:drawableTop="@drawable/tab_add_selector"
+            style="@style/RadioGroupButtonStyle"/>
+        <RadioButton
+            android:id="@+id/radio_button_me"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="关于"
+            android:drawableTop="@drawable/tab_me_selector"
+            style="@style/RadioGroupButtonStyle"/>
+    </RadioGroup>
+
+
+</LinearLayout>
