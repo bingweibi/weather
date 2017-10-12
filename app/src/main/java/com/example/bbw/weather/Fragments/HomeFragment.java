@@ -63,7 +63,7 @@ public class HomeFragment extends Fragment {
     private LinearLayout dailyForecast;
     private LinearLayout hourlyForecast;
     private SwipeRefreshLayout swipeRefreshLayout;
-    private String mWeatherId;
+    //private String mWeatherId;
     private String weatherId2;
 
 
@@ -94,7 +94,7 @@ public class HomeFragment extends Fragment {
         swipeRefreshLayout = view.findViewById(R.id.swipe_refresh);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         String weatherInfo = sharedPreferences.getString("weatherInfo",null);
 
         //解析缓存
@@ -102,19 +102,18 @@ public class HomeFragment extends Fragment {
             try {
                 Weather weather = Utility.handleWeatherInfoResponse(weatherInfo);
                 Log.d("测试缓存中城市名",weather.basic.cityName);
-                mWeatherId = weather.basic.weatherId;
+                //mWeatherId = weather.basic.weatherId;
                 showWeatherInfo(weather);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }else {
-            mWeatherId = weatherId2;
-            requestWeatherInfo(mWeatherId);
+            requestWeatherInfo(weatherId2);
         }
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                requestWeatherInfo(mWeatherId);
+                requestWeatherInfo(sharedPreferences.getString("countyId",null));
             }
         });
         return view;
@@ -123,7 +122,6 @@ public class HomeFragment extends Fragment {
     @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
     public void eventBus(Event event){
         weatherId2 = event.getMessage();
-        //Log.d("传递过来的天气ID",""+county);
         requestWeatherInfo(weatherId2);
         //EventBus.getDefault().cancelEventDelivery(event);
     }
@@ -149,6 +147,9 @@ public class HomeFragment extends Fragment {
                 try {
                     final String responseText = response.body().string();
                     final Weather weather = Utility.handleWeatherInfoResponse(responseText);
+
+                    if (getActivity() == null)
+                        return;
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -156,6 +157,7 @@ public class HomeFragment extends Fragment {
                                 //缓存天气信息
                                 SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getActivity()).edit();
                                 editor.putString("weatherInfo",responseText);
+                                editor.putString("countyId",weatherId2);
                                 editor.apply();
                                 showWeatherInfo(weather);
                                 Log.d("测试城市名",weather.basic.cityName);

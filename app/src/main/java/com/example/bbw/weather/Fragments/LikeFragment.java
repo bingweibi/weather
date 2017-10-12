@@ -1,9 +1,12 @@
 package com.example.bbw.weather.Fragments;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,7 +45,6 @@ public class LikeFragment extends Fragment implements AMapLocationListener {
     private ArrayAdapter<String> adapter;
     private List<String> dataList;
     private List<County> countyList;
-    private County countyName;
     private Fragment homeFragment;
     private Fragment likeFragment;
     private FragmentManager manager;
@@ -121,7 +123,7 @@ public class LikeFragment extends Fragment implements AMapLocationListener {
         likeFragment = new LikeFragment();
         listView = view.findViewById(R.id.likeCounty);
         dataList = new ArrayList<>();
-        countyList = new ArrayList<>();
+        //countyList = new ArrayList<>();
         adapter = new ArrayAdapter<>(getActivity(),android.R.layout.simple_list_item_1,dataList);
         listView.setAdapter(adapter);
         //EventBus.getDefault().register(this);
@@ -139,11 +141,35 @@ public class LikeFragment extends Fragment implements AMapLocationListener {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
-                final List<AddCounty> addCountyList= DataSupport.findAll(AddCounty.class);
+                //final List<AddCounty> addCountyList= DataSupport.findAll(AddCounty.class);
                 String weatherId = addCountyList.get(position).getWeatherId();
                 EventBus.getDefault().postSticky(new Event(weatherId));
                 fragmentTransaction.replace(R.id.main_fragment,homeFragment);
                 fragmentTransaction.commit();
+            }
+        });
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int position, long l) {
+
+                new AlertDialog.Builder(getActivity()).setTitle("Alert")
+                        .setMessage("确定删除？")
+                        .setPositiveButton("是", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                DataSupport.deleteAll(AddCounty.class,"countyName = ?",addCountyList.get(position).getCountyName());
+                                dataList.remove(position);
+                                adapter.notifyDataSetChanged();
+                            }
+                        })
+                        .setNegativeButton("否",new DialogInterface.OnClickListener(){
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                            }
+                        }).show();
+                //final List<AddCounty> addCountyList = DataSupport.findAll(AddCounty.class);
+                return true;
             }
         });
         return view;
