@@ -12,6 +12,7 @@ public class Now {
     public class Cond {
         @SerializedName("txt")
         public String nowWeather;
+        public String code;
     }
     @SerializedName("tmp")
     public String nowTemp;

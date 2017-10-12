@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +33,8 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
+import static java.lang.Integer.parseInt;
+
 /**
  * Created by bbw on 2017/9/16.
  */
@@ -40,7 +43,7 @@ public class HomeFragment extends Fragment {
 
     private TextView text_cityName;
     private TextView text_tempNow;
-    private TextView text_nowWeather;
+    private ImageView icon_Weather;
     private TextView text_pm25;
     private TextView text_quality;
     private TextView text_sunRaise;
@@ -50,7 +53,6 @@ public class HomeFragment extends Fragment {
     private TextView text_visibility;
     private TextView text_wind;
     private TextView text_todayDescriable;
-//    private String weatherId;
     private TextView text_hour;
     private TextView text_hourWeather;
     private TextView text_Date;
@@ -77,7 +79,7 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.home_layout_fragment,null);
         text_cityName = view.findViewById(R.id.text_cityName);
         text_tempNow = view.findViewById(R.id.text_tempNow);
-        text_nowWeather = view.findViewById(R.id.text_nowWeather);
+        icon_Weather = view.findViewById(R.id.icon_Weather);
         text_pm25 = view.findViewById(R.id.text_pm25);
         text_quality = view.findViewById(R.id.text_quality);
         text_sunRaise = view.findViewById(R.id.text_sunRaise);
@@ -87,7 +89,6 @@ public class HomeFragment extends Fragment {
         text_visibility = view.findViewById(R.id.text_visibility);
         text_wind = view.findViewById(R.id.text_wind);
         text_todayDescriable = view.findViewById(R.id.text_todayDescriable);
-        //weatherId = "";
         dailyForceastLayout = view.findViewById(R.id.layout_forecastWeather);
         hourlyForecastLayout = view.findViewById(R.id.layout_hourlyForecastWeather);
         swipeRefreshLayout = view.findViewById(R.id.swipe_refresh);
@@ -173,7 +174,10 @@ public class HomeFragment extends Fragment {
 
     private void showWeatherInfo(Weather weather) {
         text_cityName.setText(weather.basic.cityName);
+        String weatherCode = weather.now.cond.code;
+        int weatherIcon = getResources().getIdentifier("ic_"+weatherCode,"drawable",getActivity().getPackageName());
         text_tempNow.setText(weather.now.nowTemp+ "℃");
+        icon_Weather.setImageResource(weatherIcon);
         dailyForceastLayout.removeAllViews();
         for (DailyForecast dailyForecast : weather.dailyForecasts){
             text_Date = new TextView(getContext());
