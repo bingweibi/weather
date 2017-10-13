@@ -108,11 +108,8 @@ public class AddFragment extends Fragment {
                     if (!test)
                         addCounty.save();
 
-                    //EventBus.getDefault().postSticky(new Event(countyName));
                     fragmentTransaction.replace(R.id.main_fragment,likeFragment);
                     fragmentTransaction.addToBackStack(null);
-//                    fragmentTransaction.remove(addFragment);
-//                    fragmentTransaction.hide(addFragment).add(R.id.main_fragment,likeFragment).commit();
                     fragmentTransaction.commit();
                     Log.d("测试fragment跳转","success");
                 }

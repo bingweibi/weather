@@ -57,9 +57,9 @@ public class Utility {
     public static boolean handleCountyResponse(String response, int cityId) throws JSONException {
 
         if (!TextUtils.isEmpty(response)){
-            JSONArray allCountieis = new JSONArray(response);
-            for (int i = 0;i<allCountieis.length();i++){
-                JSONObject object = allCountieis.getJSONObject(i);
+            JSONArray allCountis = new JSONArray(response);
+            for (int i = 0;i<allCountis.length();i++){
+                JSONObject object = allCountis.getJSONObject(i);
                 County county = new County();
                 //county.setId(object.getInt("id"));
                 county.setName(object.getString("name"));

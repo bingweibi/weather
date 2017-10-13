@@ -106,8 +106,10 @@ public class HomeFragment extends Fragment {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }else {
+        }else if (weatherId2 !=null){
             requestWeatherInfo(weatherId2);
+        }else{
+            requestWeatherInfo("CN101010100");
         }
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
