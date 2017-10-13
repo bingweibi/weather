@@ -63,7 +63,6 @@ public class HomeFragment extends Fragment {
     private LinearLayout dailyForecast;
     private LinearLayout hourlyForecast;
     private SwipeRefreshLayout swipeRefreshLayout;
-    //private String mWeatherId;
     private String weatherId2;
 
 

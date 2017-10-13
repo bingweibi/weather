@@ -145,6 +145,7 @@ public class LikeFragment extends Fragment implements AMapLocationListener {
                 String weatherId = addCountyList.get(position).getWeatherId();
                 EventBus.getDefault().postSticky(new Event(weatherId));
                 fragmentTransaction.replace(R.id.main_fragment,homeFragment);
+                fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }
         });

@@ -86,11 +86,13 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         if(mFragment != fragment) {
             //判断切换的Fragment是否已经添加过
             if (!fragment.isAdded()) {
+                //getSupportFragmentManager().popBackStack();
                 //如果没有，则先把当前的Fragment隐藏，把切换的Fragment添加上
-                getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment,fragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment,fragment).addToBackStack(null).commit();
             } else {
+                //getSupportFragmentManager().popBackStack();
                 //如果已经添加过，则先把当前的Fragment隐藏，把切换的Fragment显示出来
-                getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment,fragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment,fragment).addToBackStack(null).commit();
             }
             mFragment = fragment;
         }
