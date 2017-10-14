@@ -3,4 +3,4 @@
 ![截屏1](https://github.com/bingweibi/weather/blob/master/app/src/main/res/drawable/screenshot1.png =100*100)<br>
 ![截屏2](https://github.com/bingweibi/weather/blob/master/app/src/main/res/drawable/screenshot2.png)<br>
 ![截屏3](https://github.com/bingweibi/weather/blob/master/app/src/main/res/drawable/screenshot3.png)
-
+<img src="https://github.com/bingweibi/weather/blob/master/app/src/main/res/drawable/screenshot1.png" alt="截图1" width="40" height="60">
