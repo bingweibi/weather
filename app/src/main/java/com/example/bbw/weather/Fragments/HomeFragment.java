@@ -58,10 +58,10 @@ public class HomeFragment extends Fragment {
     private TextView text_Date;
     private TextView text_minTemp;
     private TextView text_maxTemp;
-    private LinearLayout dailyForceastLayout;
+    private LinearLayout dayForecastLayout;
+    private LinearLayout hourForecastLayout;//分
+    private LinearLayout dailyForecastLayout;//总
     private LinearLayout hourlyForecastLayout;
-    private LinearLayout dailyForecast;
-    private LinearLayout hourlyForecast;
     private SwipeRefreshLayout swipeRefreshLayout;
     private String weatherId2;
 
@@ -88,7 +88,7 @@ public class HomeFragment extends Fragment {
         text_visibility = view.findViewById(R.id.text_visibility);
         text_wind = view.findViewById(R.id.text_wind);
         text_todayDescriable = view.findViewById(R.id.text_todayDescriable);
-        dailyForceastLayout = view.findViewById(R.id.layout_forecastWeather);
+        dailyForecastLayout = view.findViewById(R.id.layout_forecastWeather);
         hourlyForecastLayout = view.findViewById(R.id.layout_hourlyForecastWeather);
         swipeRefreshLayout = view.findViewById(R.id.swipe_refresh);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
@@ -181,8 +181,9 @@ public class HomeFragment extends Fragment {
         int weatherIcon = getResources().getIdentifier("ic_"+weatherCode,"drawable",getActivity().getPackageName());
         text_tempNow.setText(weather.now.nowTemp+ "℃");
         icon_Weather.setImageResource(weatherIcon);
-        dailyForceastLayout.removeAllViews();
+        dailyForecastLayout.removeAllViews();
         for (DailyForecast dailyForecast : weather.dailyForecasts){
+            dayForecastLayout = new LinearLayout(getContext());
             text_Date = new TextView(getContext());
             text_minTemp = new TextView(getContext());
             text_maxTemp = new TextView(getContext());
@@ -192,22 +193,30 @@ public class HomeFragment extends Fragment {
             text_Date.setTextSize(17);
             text_minTemp.setTextSize(17);
             text_maxTemp.setTextSize(17);
-            dailyForceastLayout.addView(text_Date);
-            dailyForceastLayout.addView(text_minTemp);
-            dailyForceastLayout.addView(text_maxTemp);
+            dayForecastLayout.setOrientation(LinearLayout.VERTICAL);
+            dayForecastLayout.setPadding(40,10,40,10);
+            dayForecastLayout.addView(text_Date);
+            dayForecastLayout.addView(text_minTemp);
+            dayForecastLayout.addView(text_maxTemp);
+            dailyForecastLayout.addView(dayForecastLayout);
         }
 
         hourlyForecastLayout.removeAllViews();
         for (HourlyForecast hourlyForecast : weather.hourlyForecasts){
 
+            hourForecastLayout = new LinearLayout(getContext());
             text_hour = new TextView(getContext());
             text_hourWeather = new TextView(getContext());
             text_hour.setText(hourlyForecast.date.trim().substring(10,16));
             text_hourWeather.setText(hourlyForecast.cond.hourlyWeather);
             text_hour.setTextSize(15);
             text_hourWeather.setTextSize(15);
-            hourlyForecastLayout.addView(text_hour);
-            hourlyForecastLayout.addView(text_hourWeather);
+            hourForecastLayout.setOrientation(LinearLayout.VERTICAL);
+            //hourForecastLayout.setGravity(View.FOCUS_LEFT);
+            hourForecastLayout.setPadding(20,10,20,10);
+            hourForecastLayout.addView(text_hour);
+            hourForecastLayout.addView(text_hourWeather);
+            hourlyForecastLayout.addView(hourForecastLayout);
         }
 
         for (DailyForecast dailyForecast2 : weather.dailyForecasts){

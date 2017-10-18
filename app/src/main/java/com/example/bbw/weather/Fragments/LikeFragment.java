@@ -73,9 +73,9 @@ public class LikeFragment extends Fragment implements AMapLocationListener {
                 amapLocation.getLatitude();//获取纬度
                 amapLocation.getLongitude();//获取经度
                 amapLocation.getAccuracy();//获取精度信息
-                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                //SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 Date date = new Date(amapLocation.getTime());
-                df.format(date);//定位时间
+                //df.format(date);//定位时间
                 amapLocation.getAddress();//地址，如果option中设置isNeedAddress为false，则没有此结果，网络定位结果中会有地址信息，GPS定位不返回地址信息。
                 amapLocation.getCountry();//国家信息
                 amapLocation.getProvince();//省信息

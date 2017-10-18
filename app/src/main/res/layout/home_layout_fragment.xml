@@ -70,22 +70,29 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
                     <LinearLayout
                         android:id="@+id/layout_hourlyForecastWeather"
-                        android:orientation="vertical"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
                         android:layout_weight="1"
-                        >
+                        android:gravity="center">
                     </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#778899"
+                        android:layout_marginRight="5dp"/>
 
                     <LinearLayout
                         android:id="@+id/layout_forecastWeather"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:gravity="center"
                         android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:orientation="horizontal">
                     </LinearLayout>
                 </LinearLayout>
 

@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
-    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
+    <!--<uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />-->
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 
     <application
@@ -36,10 +36,6 @@
             android:value="2adb6cbc962a2a005996035e6b3e7c47" />
 
         <service android:name="com.amap.api.location.APSService" />
-        <service
-            android:name=".service.AutoUpdateService"
-            android:enabled="true"
-            android:exported="true"></service>
     </application>
 
 </manifest>
