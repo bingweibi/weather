@@ -29,6 +29,10 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
+/**
+ * @author bibingwei
+ */
+
 public class chooseAreaActivity extends AppCompatActivity {
 
     public static final int LEVEL_PROVINCE = 0;
@@ -166,19 +170,22 @@ public class chooseAreaActivity extends AppCompatActivity {
             public void onResponse(Call call, Response response) throws IOException {
                 String responseText = response.body().string();
                 boolean result = false;
-                if ("province".equals(type)){
+                String province = "province";
+                String city = "city";
+                String county = "county";
+                if (province.equals(type)){
                     try {
                         result = Utility.handleProvinceResponse(responseText);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                }else if ("city".equals(type)){
+                }else if (city.equals(type)){
                     try {
                         result = Utility.handleCityResponse(responseText,selectedProvince.getId());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                }else if ("county".equals(type)){
+                }else if (county.equals(type)){
                     try {
                         result = Utility.handleCountyResponse(responseText,selectedCity.getId());
                     } catch (JSONException e) {

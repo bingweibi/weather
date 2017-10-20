@@ -34,6 +34,7 @@ import okhttp3.Response;
 
 /**
  * Created by bbw on 2017/9/16.
+ * @author bibingwei
  */
 
 public class AddFragment extends Fragment {
@@ -94,7 +95,6 @@ public class AddFragment extends Fragment {
                     String countiesName = countyList.get(i).getName();
                     Log.d("测试天气id",weatherId);
 
-                    //DataSupport.deleteAll(AddCounty.class);
                     Boolean test = false;
                     AddCounty addCounty = new AddCounty();
                     addCounty.setCountyName(countiesName);
@@ -105,8 +105,9 @@ public class AddFragment extends Fragment {
                             test = true;
                         }
                     }
-                    if (!test)
+                    if (!test) {
                         addCounty.save();
+                    }
 
                     fragmentTransaction.replace(R.id.main_fragment,likeFragment);
                     fragmentTransaction.addToBackStack(null);
@@ -154,7 +155,6 @@ public class AddFragment extends Fragment {
         if (countyList.size() > 0){
             dataList.clear();
             for (County county:countyList){
-                //Log.d("ceshi1111111",county.getName());
                 dataList.add(county.getName());
             }
             adapter.notifyDataSetChanged();
@@ -183,7 +183,6 @@ public class AddFragment extends Fragment {
             currentLevel = LEVEL_CITY;
         }else{
             int provinceCode = selectedProvince.getProvinceCode();
-            //Log.d("ceshi3333333","" + provinceCode);
             String url = "http://guolin.tech/api/china/"+ provinceCode ;
             queryFromServer(url,"city");
         }
@@ -207,19 +206,22 @@ public class AddFragment extends Fragment {
             public void onResponse(Call call, Response response) throws IOException {
                 String responseText = response.body().string();
                 boolean result = false;
-                if ("province".equals(type)){
+                String province = "province";
+                String city = "city";
+                String county = "county";
+                if (province.equals(type)){
                     try {
                         result = Utility.handleProvinceResponse(responseText);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                }else if ("city".equals(type)){
+                }else if (city.equals(type)){
                     try {
                         result = Utility.handleCityResponse(responseText,selectedProvince.getId());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                }else if ("county".equals(type)){
+                }else if (county.equals(type)){
                     try {
                         result = Utility.handleCountyResponse(responseText,selectedCity.getId());
                     } catch (JSONException e) {

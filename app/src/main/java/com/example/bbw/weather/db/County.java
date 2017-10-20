@@ -5,6 +5,7 @@ import org.litepal.crud.DataSupport;
 /**
  * 数据库，县级bean
  * Created by bbw on 2017/9/11.
+ * @author bibingwei
  */
 
 public class County extends DataSupport{

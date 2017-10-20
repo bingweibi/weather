@@ -6,6 +6,7 @@ import okhttp3.Request;
 /**
  * 网络请求工具
  * Created by bbw on 2017/9/11.
+ * @author bibingwei
  */
 
 public class HttpUtility {

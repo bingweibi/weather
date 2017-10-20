@@ -37,6 +37,7 @@ import static java.lang.Integer.parseInt;
 
 /**
  * Created by bbw on 2017/9/16.
+ * @author bibingwei
  */
 
 public class HomeFragment extends Fragment {
@@ -58,9 +59,11 @@ public class HomeFragment extends Fragment {
     private TextView text_Date;
     private TextView text_minTemp;
     private TextView text_maxTemp;
+    //分
     private LinearLayout dayForecastLayout;
-    private LinearLayout hourForecastLayout;//分
-    private LinearLayout dailyForecastLayout;//总
+    private LinearLayout hourForecastLayout;
+    //总
+    private LinearLayout dailyForecastLayout;
     private LinearLayout hourlyForecastLayout;
     private SwipeRefreshLayout swipeRefreshLayout;
     private String weatherId2;
@@ -149,8 +152,9 @@ public class HomeFragment extends Fragment {
                     final String responseText = response.body().string();
                     final Weather weather = Utility.handleWeatherInfoResponse(responseText);
 
-                    if (getActivity() == null)
+                    if (getActivity() == null) {
                         return;
+                    }
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -212,7 +216,6 @@ public class HomeFragment extends Fragment {
             text_hour.setTextSize(15);
             text_hourWeather.setTextSize(15);
             hourForecastLayout.setOrientation(LinearLayout.VERTICAL);
-            //hourForecastLayout.setGravity(View.FOCUS_LEFT);
             hourForecastLayout.setPadding(20,10,20,10);
             hourForecastLayout.addView(text_hour);
             hourForecastLayout.addView(text_hourWeather);

@@ -37,6 +37,7 @@ import java.util.List;
 
 /**
  * Created by bbw on 2017/9/16.
+ * @author bibingwei
  */
 
 public class LikeFragment extends Fragment implements AMapLocationListener {
@@ -51,10 +52,19 @@ public class LikeFragment extends Fragment implements AMapLocationListener {
     private FragmentTransaction fragmentTransaction;
     private List<AddCounty> addCountyList = new ArrayList<>();
 
-    //定位需要的声明
-    private AMapLocationClient mLocationClient = null;//定位发起端
-    private AMapLocationClientOption mLocationOption = null;//定位参数
-    private boolean isFirstLoc = true;//用于判断是否只显示一次定位信息和用户重新定位
+    /***
+     * 定位需要的声明
+     *定位发起端
+     */
+    private AMapLocationClient mLocationClient = null;
+    /**
+     * 定位参数
+     */
+    private AMapLocationClientOption mLocationOption = null;
+    /**
+     * 用于判断是否只显示一次定位信息和用户重新定位
+     */
+    private boolean isFirstLoc = true;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -88,9 +98,6 @@ public class LikeFragment extends Fragment implements AMapLocationListener {
 
                 if (isFirstLoc) {
                     //获取定位信息
-//                    StringBuffer buffer = new StringBuffer();
-//                    buffer.append(amapLocation.getCountry() + "" + amapLocation.getProvince() + "" + amapLocation.getCity() + "" + amapLocation.getProvince() + "" + amapLocation.getDistrict() + "" + amapLocation.getStreet() + "" + amapLocation.getStreetNum());
-//                    Toast.makeText(getActivity(), buffer.toString(), Toast.LENGTH_LONG).show();
                     Boolean test = false;
                     AddCounty addCounty = new AddCounty();
                     addCounty.setCountyName(amapLocation.getDistrict());
@@ -101,8 +108,9 @@ public class LikeFragment extends Fragment implements AMapLocationListener {
                             test = true;
                         }
                     }
-                    if (!test)
+                    if (!test) {
                         addCounty.save();
+                    }
                     isFirstLoc = false;
                 }
             } else {
@@ -126,7 +134,6 @@ public class LikeFragment extends Fragment implements AMapLocationListener {
         //countyList = new ArrayList<>();
         adapter = new ArrayAdapter<>(getActivity(),android.R.layout.simple_list_item_1,dataList);
         listView.setAdapter(adapter);
-        //EventBus.getDefault().register(this);
         fragmentTransaction = manager.beginTransaction();
 
         addCountyList = DataSupport.findAll(AddCounty.class);
@@ -141,7 +148,6 @@ public class LikeFragment extends Fragment implements AMapLocationListener {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
-                //final List<AddCounty> addCountyList= DataSupport.findAll(AddCounty.class);
                 String weatherId = addCountyList.get(position).getWeatherId();
                 EventBus.getDefault().postSticky(new Event(weatherId));
                 fragmentTransaction.replace(R.id.main_fragment,homeFragment);
@@ -169,7 +175,6 @@ public class LikeFragment extends Fragment implements AMapLocationListener {
                             public void onClick(DialogInterface dialogInterface, int i) {
                             }
                         }).show();
-                //final List<AddCounty> addCountyList = DataSupport.findAll(AddCounty.class);
                 return true;
             }
         });

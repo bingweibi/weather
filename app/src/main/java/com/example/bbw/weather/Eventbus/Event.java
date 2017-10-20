@@ -3,6 +3,7 @@ package com.example.bbw.weather.Eventbus;
 
 /**
  * Created by bbw on 2017/9/19.
+ * @author bibingwei
  */
 
 public class Event {

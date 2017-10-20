@@ -15,6 +15,7 @@ import org.json.JSONObject;
 /**
  * 用于处理服务器返回的数据
  * Created by bbw on 2017/9/11.
+ * @author bibingwei
  */
 
 public class Utility {
@@ -61,7 +62,6 @@ public class Utility {
             for (int i = 0;i<allCountis.length();i++){
                 JSONObject object = allCountis.getJSONObject(i);
                 County county = new County();
-                //county.setId(object.getInt("id"));
                 county.setName(object.getString("name"));
                 county.setWeather_id(object.getString("weather_id"));
                 county.setCityId(cityId);

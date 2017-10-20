@@ -5,6 +5,7 @@ import org.litepal.crud.DataSupport;
 /**
  * 数据库：省级bean
  * Created by bbw on 2017/9/11.
+ * @author bibingwei
  */
 
 public class Province extends DataSupport {

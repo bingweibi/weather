@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by bbw on 2017/9/13.
+ * @author bibingwei
  */
 
 public class DailyForecast {
@@ -41,7 +42,9 @@ public class DailyForecast {
         @SerializedName("min")
         public String minTemp;
     }
-    public String vis;//能见度
+
+    //能见度
+    public String vis;
 
     public Wind wind;
 
@@ -50,6 +53,7 @@ public class DailyForecast {
         public String wind;
     }
 
+    //相对湿度
     @SerializedName("hum")
-    public String humidity;//相对湿度
+    public String humidity;
 }

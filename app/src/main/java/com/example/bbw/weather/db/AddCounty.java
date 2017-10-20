@@ -4,6 +4,7 @@ import org.litepal.crud.DataSupport;
 
 /**
  * Created by bbw on 2017/10/5.
+ * @author bibingwei
  */
 
 public class AddCounty extends DataSupport {

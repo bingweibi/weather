@@ -5,6 +5,7 @@ import org.litepal.crud.DataSupport;
 /**
  * 数据库，市级bean
  * Created by bbw on 2017/9/11.
+ * @author bibingwei
  */
 
 public class City extends DataSupport{

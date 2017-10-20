@@ -57,6 +57,4 @@
             android:drawableTop="@drawable/tab_me_selector"
             style="@style/RadioGroupButtonStyle"/>
     </RadioGroup>
-
-
 </LinearLayout>

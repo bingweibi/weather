@@ -11,6 +11,7 @@ import com.example.bbw.weather.R;
 
 /**
  * Created by bbw on 2017/9/16.
+ * @author bibingwei
  */
 
 public class AboutFragment extends Fragment {

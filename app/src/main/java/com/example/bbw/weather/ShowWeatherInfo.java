@@ -27,19 +27,57 @@ import okhttp3.Response;
 
 import static org.litepal.LitePalApplication.getContext;
 
+/**
+ * @author bibingwei
+ */
+
 public class ShowWeatherInfo extends AppCompatActivity {
 
-    public TextView text_cityName;//城市名+
-    public TextView text_tempNow;//now 温度+
-    public TextView text_pm25;//今天pm2.5+
-    public TextView text_quality;//今天天气质量+
-    public TextView text_sunRaise;//今天日出时间+
-    public TextView text_sunDown;//今天日落时间+
-    public TextView text_rain;//今天降雨概率+
-    public TextView text_humidity;//今天相对湿度+
-    public TextView text_visibility;//今天能见度+
-    public TextView text_wind;//今天风向+
-    public TextView text_nowWeather;//今天天气状况描述+
+    /**
+     * 城市名
+     */
+    public TextView text_cityName;
+    /**
+     * now 温度+
+     */
+    //
+    public TextView text_tempNow;
+    /**
+     * 今天pm2.5+
+     */
+    public TextView text_pm25;
+    /**
+     * 今天天气质量+
+     */
+    public TextView text_quality;
+    /**
+     * 今天日出时间+
+     */
+    public TextView text_sunRaise;
+    /**
+     * 今天日落时间+
+     */
+    public TextView text_sunDown;
+    /**
+     * 今天降雨概率+
+     */
+    public TextView text_rain;
+    /**
+     * 今天相对湿度+
+     */
+    public TextView text_humidity;
+    /**
+     * 今天能见度+
+     */
+    public TextView text_visibility;
+    /**
+     * 今天风向+
+     */
+    public TextView text_wind;
+    /**
+     * 今天天气状况描述+
+     */
+    public TextView text_nowWeather;
     public TextView text_todayDescrible;
 
     private LinearLayout forecastLayout;
@@ -128,43 +166,7 @@ public class ShowWeatherInfo extends AppCompatActivity {
     private void showWeatherInfo(Weather weather) {
 
         text_cityName.setText(weather.basic.cityName);
-        //Log.d("ceshi ",weather.basic.cityName);
-        //text_tempNow.setText(weather.basic.update.updateTime.split("")[1]);
         text_tempNow.setText(weather.now.nowTemp);
-//        forecastLayout.removeAllViews();
-//        for (DailyForecast dailyForecast : weather.dailyForecasts){
-//            View view = LayoutInflater.from(this).inflate(R.layout.forecast_item,forecastLayout,false);
-//            TextView text_Date = (TextView) findViewById(R.id.text_nextDate);//今天日期
-//            TextView text_minTemp = (TextView) findViewById(R.id.text_nextMinTemp);//今天最低温+
-//            TextView text_maxTemp = (TextView) findViewById(R.id.text_nextMaxTemp);//今天日期+;//今天最高温+
-//            Log.d("测试",dailyForecast.tmp.minTemp);
-//            text_minTemp.setText(dailyForecast.tmp.minTemp);
-//            text_maxTemp.setText(dailyForecast.tmp.maxTemp);
-//            text_Date.setText(dailyForecast.date);
-//            forecastLayout.addView(view);
-//        }
-//
-//        hourlyLayout.removeAllViews();
-//        for (HourlyForecast hourlyForecast : weather.hourlyForecasts){
-//            View view = LayoutInflater.from(this).inflate(R.layout.hourly_item,hourlyLayout,false);
-//            TextView text_hour = (TextView) findViewById(R.id.text_hour);//预测小时+
-//            TextView text_hourWeather = (TextView) findViewById(R.id.text_hourWeather);//预测小时天气+
-//            text_hour.setText(hourlyForecast.date.split("")[1]);
-//            text_hourWeather.setText(hourlyForecast.cond.hourlyWeather);
-//            hourlyLayout.addView(view);
-//        }
-//        text_pm25.setText(weather.aqi.city.pm25);
-//        text_quality.setText(weather.aqi.city.quality);
-//        for (DailyForecast dailyForecast : weather.dailyForecasts){
-//            text_sunRaise.setText(dailyForecast.astro.sunRaise);
-//            text_sunDown.setText(dailyForecast.astro.sunDown);
-//            text_rain.setText(dailyForecast.rain);
-//            text_humidity.setText(dailyForecast.humidity);
-//            text_visibility.setText(dailyForecast.vis);
-//            text_wind.setText(dailyForecast.wind.wind);
-//            break;
-//        }
-//        text_nowWeather.setText(weather.suggestion.comf.descriable);
         text_pm25.setText(weather.aqi.city.pm25);
         text_quality.setText(weather.aqi.city.quality);
         text_todayDescrible.setText(weather.suggestion.comf.descriable);
